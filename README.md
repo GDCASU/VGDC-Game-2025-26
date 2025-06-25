@@ -2,7 +2,7 @@
 Video Game Development Club: Repository for the year 2025-2026
 
 ## Officers: 
-- President [FalkonKiaT](https://github.com/FalkonKiaT)
+- President [FalconKiaT](https://github.com/FalconKiaT)
 - Vice President
 - Secretary
 - Systems Officer [camilee03](https://github.com/camilee03) 
@@ -12,7 +12,11 @@ Video Game Development Club: Repository for the year 2025-2026
 - Narrative Officer
 - Art Officer
 
-## Instagram: 
-heatwavestudioaz
+## Socials: 
+**Instagram:** heatwavestudioaz
+**ASU DevilSync:**
 
-## ASU DevilSync: 
+## Game Summary:
+TBD
+
+// link to documentation to be included here
