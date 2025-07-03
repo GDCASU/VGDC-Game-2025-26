@@ -1,190 +1,122 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using AYellowpaper.SerializedCollections;
-
-/* -----------------------------------------------------------
- * Author:
- * Ian Fletcher
- * 
- * Modified By:
- * 
- */// --------------------------------------------------------
-
-/* -----------------------------------------------------------
- * Purpose:
- * Handle the interactions between the player and interactables
- */// --------------------------------------------------------
-
 
 /// <summary>
-/// Class that manages the interactions between the player and items
+/// 2-D interaction manager that looks for the nearest Interactable inside
+/// an OverlapCircle each frame (with Scene-view gizmos for tuning).
 /// </summary>
-public class InteractionManager : MonoBehaviour
+public class InteractionManager2D : MonoBehaviour
 {
-    // Use this bool to gate all your Debug.Log Statements please
+    /* ────────── Inspector ────────── */
+    [Header("Detection Settings")]
+    [Tooltip("World-space offset added to the player position before casting")]
+    [SerializeField] private Vector2   originOffset    = Vector2.zero;
+    [Tooltip("Detection radius in world units")]
+    [SerializeField] private float     detectRadius    = 1.5f;
+    [Tooltip("Layers that count as interactables")]
+    [SerializeField] private LayerMask interactableMask = -1;
+
     [Header("Debugging")]
-    [SerializeField] private bool doDebugLog;
-    [InspectorReadOnly] [SerializeField] private int currListSize = 0;
-    
-    // Local Variables
-    private SerializedDictionary<Collider, Interactable> cachedScripts = new();
-    private List<Interactable> interactablesList = new();
-    private Interactable focusedInteractable;
-    private bool hasFocusedEventExecuted = false;
-    
-    void Start()
-    {
-        // Start Cleaning routine
-        StartCoroutine(CleanDictionaryRoutine());
-        // Subscribe to events
-        //////////////////InputManager.OnInteract += OnInteractionExecuted;
-    }
-    
-    void Update()
-    {
-        FindClosestInteraction();
-        currListSize = cachedScripts.Count;
-    }
+    [SerializeField] private bool doDebugLog = false;
 
-    private void OnDestroy()
-    {
-        // Unsubscribe to events
-        ///////////////////InputManager.OnInteract -= OnInteractionExecuted;
-    }
+    /* ────────── Internals ────────── */
+    private Interactable _focused;
+    private bool         _focusEntered;
+    private Transform    _player;
 
-    /// <summary>
-    /// Function that will be called whenever the player hits the interaction button
-    /// </summary>
-    private void OnInteractionExecuted()
-    {
-        focusedInteractable?.OnInteractionExecuted?.Invoke();
-    }
+    /* ====================================================================== */
+    /*                               Unity                                    */
+    /* ====================================================================== */
 
-    /// <summary>
-    /// Function that will find which object is the closest to the player and focus it
-    /// </summary>
-    private void FindClosestInteraction()
+    private void Awake()   => _player = transform;
+    private void OnEnable()  { InputManager.OnInteract += OnInteractPressed; }
+    private void OnDisable() { InputManager.OnInteract -= OnInteractPressed; }
+
+    private void Update() => DetectInteractable();
+
+    /* ====================================================================== */
+    /*                            Core Logic                                  */
+    /* ====================================================================== */
+
+    private void DetectInteractable()
     {
-        // Check if empty, if so, return early
-        if (interactablesList.Count <= 0)
+        Vector2 origin = (Vector2)_player.position + originOffset;
+
+        // Grab every collider in range that is on the interactable layer
+        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, detectRadius, interactableMask);
+
+        // Find the nearest Interactable (if any)
+        Interactable nearest     = null;
+        float        nearestSqr  = float.MaxValue;
+
+        foreach (var c in hits)
         {
-            if (focusedInteractable)
+            if (!c.TryGetComponent(out Interactable i)) continue;
+
+            float sqr = ((Vector2)c.transform.position - origin).sqrMagnitude;
+            if (sqr < nearestSqr)
             {
-                focusedInteractable.OnFocusExit?.Invoke();
-                focusedInteractable = null;
-            }
-            hasFocusedEventExecuted = false;
-            return;
-        }
-        
-        // Else we do have interactables, find closest
-        Vector3 playerPos = new Vector3(1, 1, 1);/////////////PlayerObject.Instance.transform.position;
-        Interactable closest = null;
-        float closestDistanceSqr = Mathf.Infinity;
-
-        foreach (var interactable in interactablesList)
-        {
-            if (interactable == null) continue; // Skip null entries
-
-            float distanceSqr = (interactable.transform.position - playerPos).sqrMagnitude;
-
-            if (distanceSqr < closestDistanceSqr)
-            {
-                closestDistanceSqr = distanceSqr;
-                closest = interactable;
+                nearest    = i;
+                nearestSqr = sqr;
             }
         }
-        
-        // Check if the closest is different from the previous
-        if (focusedInteractable != null && focusedInteractable != closest)
+
+        /* ---------- Focus change handling ---------- */
+        if (nearest != _focused)
         {
-            // It was different, call OnFocusExit
-            focusedInteractable.OnFocusExit?.Invoke();
-            hasFocusedEventExecuted = false;
-            focusedInteractable = closest;
+            _focused?.OnFocusExit?.Invoke();
+            _focused      = nearest;
+            _focusEntered = false;
         }
-        
-        // Check if it was focused before
-        if (!hasFocusedEventExecuted)
+
+        /* ---------- Focus life-cycle ---------- */
+        if (_focused == null) return;
+
+        if (!_focusEntered)
         {
-            // First time this object has been focused
-            focusedInteractable = closest;
-            hasFocusedEventExecuted = true;
-            focusedInteractable.OnFocusEnter?.Invoke();
+            _focused.OnFocusEnter?.Invoke();
+            _focusEntered = true;
         }
         else
         {
-            // It was, execute OnFocusStay
-            focusedInteractable.OnFocusStay?.Invoke();
+            _focused.OnFocusStay?.Invoke();
         }
-        
-        
+
+        if (doDebugLog)
+            Debug.Log($"Focused: {_focused.name}", _focused);
     }
+
+    private void OnInteractPressed() => _focused?.OnInteractionExecuted?.Invoke();
     
-    private void OnTriggerEnter(Collider other)
-    {
-        // Check and cache objects that are interactable
-        other.TryGetComponent<Interactable>(out Interactable interactable);
-        if (interactable)
-        {
-            // Object was of type interactable, add to dictionary and trigger the 
-            cachedScripts.Add(other, interactable);
-            interactablesList.Add(interactable);
-            interactable.OnInteractionEnter?.Invoke();
-        }
-    }
+    #if UNITY_EDITOR
 
-    private void OnTriggerStay(Collider other)
-    {
-        // Execute the stay function if it is an interactable
-        cachedScripts.TryGetValue(other, out Interactable interactable);
-        // If valid, execute
-        if (interactable) interactable.OnInteractionStay?.Invoke();
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        // Remove from cache
-        cachedScripts.TryGetValue(other, out Interactable interactable);
-        // If valid, remove
-        if (interactable)
-        {
-            interactablesList.Remove(interactable);
-            cachedScripts.Remove(other);
-            interactable.OnInteractionExit?.Invoke();
-        }
-    }
+    /* ====================================================================== */
+    /*                                Gizmos                                  */
+    /* ====================================================================== */
 
     /// <summary>
-    /// Routine that will run every 2 second to check the dictionary for nulls and clean them
+    /// Draws the detection circle (cyan) and highlights the current focus
+    /// (green if one is found, red if none) while the object is selected.
     /// </summary>
-    private IEnumerator CleanDictionaryRoutine()
+    private void OnDrawGizmosSelected()
     {
-        List<Collider> toRemove = new List<Collider>();
-        WaitForSeconds waitTime = new WaitForSeconds(2f);
-        while (true)
-        {
-            // Wait X seconds
-            yield return waitTime;
-            
-            // Clean dictionary
-            toRemove.Clear();
+        Vector2 origin = (Vector2)transform.position + originOffset;
 
-            // Identify null colliders
-            foreach (var entry in cachedScripts)
-            {
-                if (!entry.Key)
-                {
-                    toRemove.Add(entry.Key);
-                }
-            }
+        // Outer detection area
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(origin, detectRadius);
 
-            // Remove them
-            foreach (var collider in toRemove)
-            {
-                cachedScripts.Remove(collider);
-            }
-        }
+        // Draw a dot showing the origin point
+        Gizmos.color = new Color(0.2f, 0.6f, 1f);
+        Gizmos.DrawSphere(origin, 0.05f);
+
+        if (!Application.isPlaying) return;
+
+        // Endpoint indicator: green for a hit, red otherwise
+        Gizmos.color = _focused ? Color.green : Color.red;
+        Vector2 end  = _focused ? (Vector2)_focused.transform.position
+                                : origin + Vector2.up * detectRadius;
+        Gizmos.DrawSphere(end, 0.08f);
     }
+    
+    #endif
 }

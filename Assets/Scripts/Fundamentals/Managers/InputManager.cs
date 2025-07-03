@@ -23,13 +23,16 @@ public class InputManager : MonoBehaviour
     /* ---------- Private vars ---------- */
     private PlayerControls _playerControls;
 
-    #region Public Events -----------------------------------------------------
-
+    #region Public Events
+    
     /// <summary>Raised continuously while Move input is active.</summary>
     public static event Action OnMove;
 
     /// <summary>Raised on jump press (performed).</summary>
     public static event Action OnJump;
+    
+    /// <summary> Raised when the player clicks the interact key </summary>
+    public static event Action OnInteract;
 
     #endregion
 
@@ -124,8 +127,11 @@ public class InputManager : MonoBehaviour
     private void HandleRotateBackwards (InputAction.CallbackContext ctx) { /* TODO */ }
     
     /* -------- Interactions -------- */
-    
-    private void HandleInteraction (InputAction.CallbackContext ctx) { /* TODO */ }
+
+    private void HandleInteraction(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed) OnInteract?.Invoke();
+    }
 
     /* ---------------- Level / UI -------------- */
     private void HandleLevelRetry(InputAction.CallbackContext ctx) { /* TODO */ }
