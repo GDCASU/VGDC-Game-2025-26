@@ -91,11 +91,14 @@ public class InputManager : MonoBehaviour
         _playerControls.Movement.Move.canceled  += HandleMovementInput;
 
         /* -------- Gravity Gun Actions -------- */
-        _playerControls.GravityGun.LeftClickPush.performed   += HandleLeftClickPush;
-        _playerControls.GravityGun.RightClickPull.performed  += HandleRightClickPull;
-        _playerControls.GravityGun.MiddleWheelPress.performed+= HandleMiddleWheelPress;
-        _playerControls.GravityGun.ScrollWheelDown.performed += HandleScrollWheelDown;
-        _playerControls.GravityGun.ScrollWheelUp.performed   += HandleScrollWheelUp;
+        _playerControls.GravityGun.Push.performed   += HandlePush;
+        _playerControls.GravityGun.Pull.performed  += HandlePull;
+        _playerControls.GravityGun.Special.performed+= HandleSpecial;
+        _playerControls.GravityGun.RotateObjectBackwards.performed += HandleRotateBackwards;
+        _playerControls.GravityGun.RotateObjectFoward.performed   += HandleRotateFoward;
+        
+        /* -------- Interactions -------- */
+        _playerControls.Interactions.Interact.performed += HandleInteraction;
 
         /* -------- Level / UI Actions -------- */
         _playerControls.Level.Retry.performed += HandleLevelRetry;
@@ -114,11 +117,15 @@ public class InputManager : MonoBehaviour
 
     /* --------------- Gravity Gun -------------- */
     // NOTE: Gameplay not implemented yet; methods are placeholders
-    private void HandleLeftClickPush   (InputAction.CallbackContext ctx) { /* TODO */ }
-    private void HandleRightClickPull  (InputAction.CallbackContext ctx) { /* TODO */ }
-    private void HandleMiddleWheelPress(InputAction.CallbackContext ctx) { /* TODO */ }
-    private void HandleScrollWheelUp   (InputAction.CallbackContext ctx) { /* TODO */ }
-    private void HandleScrollWheelDown (InputAction.CallbackContext ctx) { /* TODO */ }
+    private void HandlePush   (InputAction.CallbackContext ctx) { /* TODO */ }
+    private void HandlePull  (InputAction.CallbackContext ctx) { /* TODO */ }
+    private void HandleSpecial(InputAction.CallbackContext ctx) { /* TODO */ }
+    private void HandleRotateFoward   (InputAction.CallbackContext ctx) { /* TODO */ }
+    private void HandleRotateBackwards (InputAction.CallbackContext ctx) { /* TODO */ }
+    
+    /* -------- Interactions -------- */
+    
+    private void HandleInteraction (InputAction.CallbackContext ctx) { /* TODO */ }
 
     /* ---------------- Level / UI -------------- */
     private void HandleLevelRetry(InputAction.CallbackContext ctx) { /* TODO */ }

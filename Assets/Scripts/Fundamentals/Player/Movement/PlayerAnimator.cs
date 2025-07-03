@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Pure presentation layer for the player:
-/// – Listens to events from <see cref="PlayerController"/> to trigger animations,
+/// – Listens to events from <see cref="PlayerMovementController"/> to trigger animations,
 ///   particle effects, and audio.
 /// – Tilts / flips the sprite and scales particles based on movement speed.
 /// 
@@ -13,7 +14,7 @@ public class PlayerAnimator : MonoBehaviour
     /* ---------- Inspector References ---------- */
     [Header("References")]
     [SerializeField] private Animator        _anim;
-    [SerializeField] private PlayerController _player;  // Event source
+    [FormerlySerializedAs("_player")] [SerializeField] private PlayerMovementController playerMovement;  // Event source
     [SerializeField] private SpriteRenderer  _sprite;
     [SerializeField] private Rigidbody2D     _rb;
 
@@ -45,23 +46,23 @@ public class PlayerAnimator : MonoBehaviour
     private void OnEnable()
     {
         // Subscribe to gameplay events
-        _player.Jumped          += OnJumped;
-        _player.GroundedChanged += OnGroundedChanged;
+        playerMovement.Jumped          += OnJumped;
+        playerMovement.GroundedChanged += OnGroundedChanged;
 
         _moveParticles.Play(); // Start dust trail immediately
     }
 
     private void OnDisable()
     {
-        _player.Jumped          -= OnJumped;
-        _player.GroundedChanged -= OnGroundedChanged;
+        playerMovement.Jumped          -= OnJumped;
+        playerMovement.GroundedChanged -= OnGroundedChanged;
 
         _moveParticles.Stop();
     }
 
     private void Update()
     {
-        if (_player == null) return; // Safety for prefab previews
+        if (playerMovement == null) return; // Safety for prefab previews
 
         DetectGroundColor(); // Update particle tint if we change terrain
 
@@ -91,14 +92,14 @@ public class PlayerAnimator : MonoBehaviour
     /// <summary>Flips sprite when player walks left/right.</summary>
     private void HandleSpriteFlip()
     {
-        if (_player.FrameInput.x != 0)
-            _sprite.flipX = _player.FrameInput.x < 0;
+        if (playerMovement.FrameInput.x != 0)
+            _sprite.flipX = playerMovement.FrameInput.x < 0;
     }
 
     /// <summary>Drive idle bob speed & particle scale from analog stick strength.</summary>
     private void HandleIdleSpeed()
     {
-        float inputStrength = Mathf.Abs(_player.FrameInput.x);
+        float inputStrength = Mathf.Abs(playerMovement.FrameInput.x);
 
         // Idle animation: 1× speed when stick neutral → maxIdleSpeed when fully held
         _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, inputStrength));

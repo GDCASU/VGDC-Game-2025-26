@@ -180,11 +180,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ]
         },
         {
+            ""name"": ""Interactions"",
+            ""id"": ""c4cbc221-dcaf-41d9-834c-f77f89b9efcd"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""891f1b02-d222-4e1c-9d59-4231a87e9987"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3e13592d-a933-4d0d-89ab-13faefc515d3"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""Gravity Gun"",
             ""id"": ""e751e00a-4fa7-40c2-90cc-1afb6727e609"",
             ""actions"": [
                 {
-                    ""name"": ""Left Click Push"",
+                    ""name"": ""Push"",
                     ""type"": ""Button"",
                     ""id"": ""59ae3353-936b-40bf-be96-780014d8028d"",
                     ""expectedControlType"": """",
@@ -193,7 +221,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Right Click Pull"",
+                    ""name"": ""Pull"",
                     ""type"": ""Button"",
                     ""id"": ""19869d63-b957-44c8-a1be-56e8140266b2"",
                     ""expectedControlType"": """",
@@ -202,7 +230,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Middle Wheel Press"",
+                    ""name"": ""Special"",
                     ""type"": ""Button"",
                     ""id"": ""da9be873-1ffb-4e74-a6f6-d48eb8922d2c"",
                     ""expectedControlType"": """",
@@ -211,7 +239,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Scroll Wheel Up"",
+                    ""name"": ""Rotate Object Foward"",
                     ""type"": ""Button"",
                     ""id"": ""cc67f370-c1fc-446b-9a8e-7fe6f994bd31"",
                     ""expectedControlType"": """",
@@ -220,7 +248,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Scroll Wheel Down"",
+                    ""name"": ""Rotate Object Backwards"",
                     ""type"": ""Button"",
                     ""id"": ""55d03fde-9085-48fe-808e-c83e392eaed3"",
                     ""expectedControlType"": """",
@@ -237,7 +265,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Left Click Push"",
+                    ""action"": ""Push"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -248,7 +276,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Right Click Pull"",
+                    ""action"": ""Pull"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -259,7 +287,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Middle Wheel Press"",
+                    ""action"": ""Special"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -270,7 +298,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Scroll Wheel Down"",
+                    ""action"": ""Rotate Object Backwards"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -281,7 +309,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Scroll Wheel Down"",
+                    ""action"": ""Rotate Object Backwards"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -292,7 +320,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Scroll Wheel Down"",
+                    ""action"": ""Rotate Object Backwards"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -303,7 +331,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Scroll Wheel Up"",
+                    ""action"": ""Rotate Object Foward"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -314,7 +342,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Scroll Wheel Up"",
+                    ""action"": ""Rotate Object Foward"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -325,7 +353,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Scroll Wheel Up"",
+                    ""action"": ""Rotate Object Foward"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -394,13 +422,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
+        // Interactions
+        m_Interactions = asset.FindActionMap("Interactions", throwIfNotFound: true);
+        m_Interactions_Interact = m_Interactions.FindAction("Interact", throwIfNotFound: true);
         // Gravity Gun
         m_GravityGun = asset.FindActionMap("Gravity Gun", throwIfNotFound: true);
-        m_GravityGun_LeftClickPush = m_GravityGun.FindAction("Left Click Push", throwIfNotFound: true);
-        m_GravityGun_RightClickPull = m_GravityGun.FindAction("Right Click Pull", throwIfNotFound: true);
-        m_GravityGun_MiddleWheelPress = m_GravityGun.FindAction("Middle Wheel Press", throwIfNotFound: true);
-        m_GravityGun_ScrollWheelUp = m_GravityGun.FindAction("Scroll Wheel Up", throwIfNotFound: true);
-        m_GravityGun_ScrollWheelDown = m_GravityGun.FindAction("Scroll Wheel Down", throwIfNotFound: true);
+        m_GravityGun_Push = m_GravityGun.FindAction("Push", throwIfNotFound: true);
+        m_GravityGun_Pull = m_GravityGun.FindAction("Pull", throwIfNotFound: true);
+        m_GravityGun_Special = m_GravityGun.FindAction("Special", throwIfNotFound: true);
+        m_GravityGun_RotateObjectFoward = m_GravityGun.FindAction("Rotate Object Foward", throwIfNotFound: true);
+        m_GravityGun_RotateObjectBackwards = m_GravityGun.FindAction("Rotate Object Backwards", throwIfNotFound: true);
         // Level
         m_Level = asset.FindActionMap("Level", throwIfNotFound: true);
         m_Level_Retry = m_Level.FindAction("Retry", throwIfNotFound: true);
@@ -412,6 +443,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_Movement.enabled, "This will cause a leak and performance issues, PlayerControls.Movement.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Interactions.enabled, "This will cause a leak and performance issues, PlayerControls.Interactions.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_GravityGun.enabled, "This will cause a leak and performance issues, PlayerControls.GravityGun.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Level.enabled, "This will cause a leak and performance issues, PlayerControls.Level.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerControls.UI.Disable() has not been called.");
@@ -594,14 +626,110 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// </summary>
     public MovementActions @Movement => new MovementActions(this);
 
+    // Interactions
+    private readonly InputActionMap m_Interactions;
+    private List<IInteractionsActions> m_InteractionsActionsCallbackInterfaces = new List<IInteractionsActions>();
+    private readonly InputAction m_Interactions_Interact;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Interactions".
+    /// </summary>
+    public struct InteractionsActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public InteractionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Interactions/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_Interactions_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Interactions; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="InteractionsActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(InteractionsActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="InteractionsActions" />
+        public void AddCallbacks(IInteractionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InteractionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InteractionsActionsCallbackInterfaces.Add(instance);
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="InteractionsActions" />
+        private void UnregisterCallbacks(IInteractionsActions instance)
+        {
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="InteractionsActions.UnregisterCallbacks(IInteractionsActions)" />.
+        /// </summary>
+        /// <seealso cref="InteractionsActions.UnregisterCallbacks(IInteractionsActions)" />
+        public void RemoveCallbacks(IInteractionsActions instance)
+        {
+            if (m_Wrapper.m_InteractionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="InteractionsActions.AddCallbacks(IInteractionsActions)" />
+        /// <seealso cref="InteractionsActions.RemoveCallbacks(IInteractionsActions)" />
+        /// <seealso cref="InteractionsActions.UnregisterCallbacks(IInteractionsActions)" />
+        public void SetCallbacks(IInteractionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InteractionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InteractionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="InteractionsActions" /> instance referencing this action map.
+    /// </summary>
+    public InteractionsActions @Interactions => new InteractionsActions(this);
+
     // Gravity Gun
     private readonly InputActionMap m_GravityGun;
     private List<IGravityGunActions> m_GravityGunActionsCallbackInterfaces = new List<IGravityGunActions>();
-    private readonly InputAction m_GravityGun_LeftClickPush;
-    private readonly InputAction m_GravityGun_RightClickPull;
-    private readonly InputAction m_GravityGun_MiddleWheelPress;
-    private readonly InputAction m_GravityGun_ScrollWheelUp;
-    private readonly InputAction m_GravityGun_ScrollWheelDown;
+    private readonly InputAction m_GravityGun_Push;
+    private readonly InputAction m_GravityGun_Pull;
+    private readonly InputAction m_GravityGun_Special;
+    private readonly InputAction m_GravityGun_RotateObjectFoward;
+    private readonly InputAction m_GravityGun_RotateObjectBackwards;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gravity Gun".
     /// </summary>
@@ -614,25 +742,25 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public GravityGunActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "GravityGun/LeftClickPush".
+        /// Provides access to the underlying input action "GravityGun/Push".
         /// </summary>
-        public InputAction @LeftClickPush => m_Wrapper.m_GravityGun_LeftClickPush;
+        public InputAction @Push => m_Wrapper.m_GravityGun_Push;
         /// <summary>
-        /// Provides access to the underlying input action "GravityGun/RightClickPull".
+        /// Provides access to the underlying input action "GravityGun/Pull".
         /// </summary>
-        public InputAction @RightClickPull => m_Wrapper.m_GravityGun_RightClickPull;
+        public InputAction @Pull => m_Wrapper.m_GravityGun_Pull;
         /// <summary>
-        /// Provides access to the underlying input action "GravityGun/MiddleWheelPress".
+        /// Provides access to the underlying input action "GravityGun/Special".
         /// </summary>
-        public InputAction @MiddleWheelPress => m_Wrapper.m_GravityGun_MiddleWheelPress;
+        public InputAction @Special => m_Wrapper.m_GravityGun_Special;
         /// <summary>
-        /// Provides access to the underlying input action "GravityGun/ScrollWheelUp".
+        /// Provides access to the underlying input action "GravityGun/RotateObjectFoward".
         /// </summary>
-        public InputAction @ScrollWheelUp => m_Wrapper.m_GravityGun_ScrollWheelUp;
+        public InputAction @RotateObjectFoward => m_Wrapper.m_GravityGun_RotateObjectFoward;
         /// <summary>
-        /// Provides access to the underlying input action "GravityGun/ScrollWheelDown".
+        /// Provides access to the underlying input action "GravityGun/RotateObjectBackwards".
         /// </summary>
-        public InputAction @ScrollWheelDown => m_Wrapper.m_GravityGun_ScrollWheelDown;
+        public InputAction @RotateObjectBackwards => m_Wrapper.m_GravityGun_RotateObjectBackwards;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -659,21 +787,21 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GravityGunActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GravityGunActionsCallbackInterfaces.Add(instance);
-            @LeftClickPush.started += instance.OnLeftClickPush;
-            @LeftClickPush.performed += instance.OnLeftClickPush;
-            @LeftClickPush.canceled += instance.OnLeftClickPush;
-            @RightClickPull.started += instance.OnRightClickPull;
-            @RightClickPull.performed += instance.OnRightClickPull;
-            @RightClickPull.canceled += instance.OnRightClickPull;
-            @MiddleWheelPress.started += instance.OnMiddleWheelPress;
-            @MiddleWheelPress.performed += instance.OnMiddleWheelPress;
-            @MiddleWheelPress.canceled += instance.OnMiddleWheelPress;
-            @ScrollWheelUp.started += instance.OnScrollWheelUp;
-            @ScrollWheelUp.performed += instance.OnScrollWheelUp;
-            @ScrollWheelUp.canceled += instance.OnScrollWheelUp;
-            @ScrollWheelDown.started += instance.OnScrollWheelDown;
-            @ScrollWheelDown.performed += instance.OnScrollWheelDown;
-            @ScrollWheelDown.canceled += instance.OnScrollWheelDown;
+            @Push.started += instance.OnPush;
+            @Push.performed += instance.OnPush;
+            @Push.canceled += instance.OnPush;
+            @Pull.started += instance.OnPull;
+            @Pull.performed += instance.OnPull;
+            @Pull.canceled += instance.OnPull;
+            @Special.started += instance.OnSpecial;
+            @Special.performed += instance.OnSpecial;
+            @Special.canceled += instance.OnSpecial;
+            @RotateObjectFoward.started += instance.OnRotateObjectFoward;
+            @RotateObjectFoward.performed += instance.OnRotateObjectFoward;
+            @RotateObjectFoward.canceled += instance.OnRotateObjectFoward;
+            @RotateObjectBackwards.started += instance.OnRotateObjectBackwards;
+            @RotateObjectBackwards.performed += instance.OnRotateObjectBackwards;
+            @RotateObjectBackwards.canceled += instance.OnRotateObjectBackwards;
         }
 
         /// <summary>
@@ -685,21 +813,21 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="GravityGunActions" />
         private void UnregisterCallbacks(IGravityGunActions instance)
         {
-            @LeftClickPush.started -= instance.OnLeftClickPush;
-            @LeftClickPush.performed -= instance.OnLeftClickPush;
-            @LeftClickPush.canceled -= instance.OnLeftClickPush;
-            @RightClickPull.started -= instance.OnRightClickPull;
-            @RightClickPull.performed -= instance.OnRightClickPull;
-            @RightClickPull.canceled -= instance.OnRightClickPull;
-            @MiddleWheelPress.started -= instance.OnMiddleWheelPress;
-            @MiddleWheelPress.performed -= instance.OnMiddleWheelPress;
-            @MiddleWheelPress.canceled -= instance.OnMiddleWheelPress;
-            @ScrollWheelUp.started -= instance.OnScrollWheelUp;
-            @ScrollWheelUp.performed -= instance.OnScrollWheelUp;
-            @ScrollWheelUp.canceled -= instance.OnScrollWheelUp;
-            @ScrollWheelDown.started -= instance.OnScrollWheelDown;
-            @ScrollWheelDown.performed -= instance.OnScrollWheelDown;
-            @ScrollWheelDown.canceled -= instance.OnScrollWheelDown;
+            @Push.started -= instance.OnPush;
+            @Push.performed -= instance.OnPush;
+            @Push.canceled -= instance.OnPush;
+            @Pull.started -= instance.OnPull;
+            @Pull.performed -= instance.OnPull;
+            @Pull.canceled -= instance.OnPull;
+            @Special.started -= instance.OnSpecial;
+            @Special.performed -= instance.OnSpecial;
+            @Special.canceled -= instance.OnSpecial;
+            @RotateObjectFoward.started -= instance.OnRotateObjectFoward;
+            @RotateObjectFoward.performed -= instance.OnRotateObjectFoward;
+            @RotateObjectFoward.canceled -= instance.OnRotateObjectFoward;
+            @RotateObjectBackwards.started -= instance.OnRotateObjectBackwards;
+            @RotateObjectBackwards.performed -= instance.OnRotateObjectBackwards;
+            @RotateObjectBackwards.canceled -= instance.OnRotateObjectBackwards;
         }
 
         /// <summary>
@@ -948,6 +1076,21 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
     }
     /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Interactions" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="InteractionsActions.AddCallbacks(IInteractionsActions)" />
+    /// <seealso cref="InteractionsActions.RemoveCallbacks(IInteractionsActions)" />
+    public interface IInteractionsActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
+    }
+    /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gravity Gun" which allows adding and removing callbacks.
     /// </summary>
     /// <seealso cref="GravityGunActions.AddCallbacks(IGravityGunActions)" />
@@ -955,40 +1098,40 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IGravityGunActions
     {
         /// <summary>
-        /// Method invoked when associated input action "Left Click Push" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Push" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnLeftClickPush(InputAction.CallbackContext context);
+        void OnPush(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Right Click Pull" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Pull" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnRightClickPull(InputAction.CallbackContext context);
+        void OnPull(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Middle Wheel Press" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Special" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMiddleWheelPress(InputAction.CallbackContext context);
+        void OnSpecial(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Scroll Wheel Up" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Rotate Object Foward" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnScrollWheelUp(InputAction.CallbackContext context);
+        void OnRotateObjectFoward(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Scroll Wheel Down" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Rotate Object Backwards" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnScrollWheelDown(InputAction.CallbackContext context);
+        void OnRotateObjectBackwards(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Level" which allows adding and removing callbacks.

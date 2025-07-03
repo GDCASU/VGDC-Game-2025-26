@@ -94,11 +94,39 @@
             ]
         },
         {
+            "name": "Interactions",
+            "id": "c4cbc221-dcaf-41d9-834c-f77f89b9efcd",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "891f1b02-d222-4e1c-9d59-4231a87e9987",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3e13592d-a933-4d0d-89ab-13faefc515d3",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Gravity Gun",
             "id": "e751e00a-4fa7-40c2-90cc-1afb6727e609",
             "actions": [
                 {
-                    "name": "Left Click Push",
+                    "name": "Push",
                     "type": "Button",
                     "id": "59ae3353-936b-40bf-be96-780014d8028d",
                     "expectedControlType": "",
@@ -107,7 +135,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Right Click Pull",
+                    "name": "Pull",
                     "type": "Button",
                     "id": "19869d63-b957-44c8-a1be-56e8140266b2",
                     "expectedControlType": "",
@@ -116,7 +144,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Middle Wheel Press",
+                    "name": "Special",
                     "type": "Button",
                     "id": "da9be873-1ffb-4e74-a6f6-d48eb8922d2c",
                     "expectedControlType": "",
@@ -125,7 +153,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Scroll Wheel Up",
+                    "name": "Rotate Object Foward",
                     "type": "Button",
                     "id": "cc67f370-c1fc-446b-9a8e-7fe6f994bd31",
                     "expectedControlType": "",
@@ -134,7 +162,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Scroll Wheel Down",
+                    "name": "Rotate Object Backwards",
                     "type": "Button",
                     "id": "55d03fde-9085-48fe-808e-c83e392eaed3",
                     "expectedControlType": "",
@@ -151,7 +179,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Left Click Push",
+                    "action": "Push",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -162,7 +190,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Right Click Pull",
+                    "action": "Pull",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -173,7 +201,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Middle Wheel Press",
+                    "action": "Special",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -184,7 +212,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Scroll Wheel Down",
+                    "action": "Rotate Object Backwards",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -195,7 +223,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Scroll Wheel Down",
+                    "action": "Rotate Object Backwards",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -206,7 +234,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Scroll Wheel Down",
+                    "action": "Rotate Object Backwards",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -217,7 +245,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Scroll Wheel Up",
+                    "action": "Rotate Object Foward",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -228,7 +256,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Scroll Wheel Up",
+                    "action": "Rotate Object Foward",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -239,7 +267,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Scroll Wheel Up",
+                    "action": "Rotate Object Foward",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

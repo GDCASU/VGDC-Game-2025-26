@@ -11,7 +11,7 @@ using UnityEngine;
 /// <para> This script *does not* animate or play VFX/SFX directly; those concerns live
 /// in <see cref="PlayerAnimator"/>. </para>
 /// </summary>
-public class PlayerController : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
     /* ---------- Serialized Configuration ---------- */
     [Tooltip("ScriptableObject containing tunable movement numbers")]
