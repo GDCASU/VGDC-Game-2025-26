@@ -17,9 +17,10 @@ public class InteractionManager2D : MonoBehaviour
 
     [Header("Debugging")]
     [SerializeField] private bool doDebugLog = false;
+    [SerializeField] private Interactable _focused;
 
     /* ────────── Internals ────────── */
-    private Interactable _focused;
+    
     private bool         _focusEntered;
     private Transform    _player;
 
@@ -27,9 +28,16 @@ public class InteractionManager2D : MonoBehaviour
     /*                               Unity                                    */
     /* ====================================================================== */
 
-    private void Awake()   => _player = transform;
-    private void OnEnable()  { InputManager.OnInteract += OnInteractPressed; }
-    private void OnDisable() { InputManager.OnInteract -= OnInteractPressed; }
+    private void Start()
+    {
+        _player = transform;
+        InputManager.OnInteract += OnInteractPressed;
+    }
+
+    private void OnDestroy()
+    {
+        InputManager.OnInteract -= OnInteractPressed;
+    }
 
     private void Update() => DetectInteractable();
 
@@ -85,7 +93,11 @@ public class InteractionManager2D : MonoBehaviour
             Debug.Log($"Focused: {_focused.name}", _focused);
     }
 
-    private void OnInteractPressed() => _focused?.OnInteractionExecuted?.Invoke();
+    private void OnInteractPressed()
+    {
+        _focused?.OnInteractionExecuted?.Invoke();
+        if (doDebugLog) Debug.Log($"Interact: {_focused.name}", _focused);
+    }
     
     #if UNITY_EDITOR
 
