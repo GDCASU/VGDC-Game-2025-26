@@ -5125,6 +5125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 2969068313154050966}
+  _player: {fileID: 1544650614272011792}
   _sprite: {fileID: 2969068313154050967}
   _rb: {fileID: 1544650614272011793}
   _maxIdleSpeed: 2

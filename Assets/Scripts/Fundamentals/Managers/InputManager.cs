@@ -1,73 +1,73 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/* -----------------------------------------------------------
- * Author:
- * 
- * 
- * Modified By:
- * 
- */// --------------------------------------------------------
-
-/* -----------------------------------------------------------
- * Purpose:
- * 
- */// --------------------------------------------------------
-
-
 /// <summary>
-/// 
+/// Singleton that owns the <c>PlayerControls</c> asset and surfaces the
+/// current input state each frame.
 /// </summary>
 public class InputManager : MonoBehaviour
 {
-    // Singleton Instance
+    /* ---------- Singleton Boilerplate ---------- */
     public static InputManager Instance;
-    
-    // Use this bool to gate all your Debug.Log Statements please
+
+    /* ---------- Inspector Flags ---------- */
     [Header("Debugging")]
-    [SerializeField] private bool _doDebugLog;
-    
-    // Input-Updated Values
-    [HideInInspector] public Vector2 movementInput; // Vector2 for movement
-    
-    // Local variables
+    [SerializeField] private bool _doDebugLog = false; // Gate for spammy logs
+
+    /* ---------- Input-updated fields ---------- */
+    [HideInInspector] public Vector2 movementInput;    // Left-stick / WASD
+    [HideInInspector] public bool jumpHeldDownInput; // True while jump button held
+    [HideInInspector] public bool jumpPressedThisFrame; // True only on the frame pressed
+
+    /* ---------- Private vars ---------- */
     private PlayerControls _playerControls;
 
-    #region Player Events
+    #region Public Events -----------------------------------------------------
 
-    /// <summary> Player's Move Event </summary>
-    public static event System.Action OnMove;
-    public static event System.Action OnJump;
+    /// <summary>Raised continuously while Move input is active.</summary>
+    public static event Action OnMove;
+
+    /// <summary>Raised on jump press (performed).</summary>
+    public static event Action OnJump;
 
     #endregion
 
-    #region Unity Events
+    /* ====================================================================== */
+    /*                          Unity Lifecycle                               */
+    /* ====================================================================== */
 
     private void Awake()
     {
-        // Handle Singleton
+        /* -------- Singleton enforcement -------- */
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
 
-        // Control handling
+        /* -------- Input System mapping -------- */
         if (_playerControls == null)
         {
             _playerControls = new PlayerControls();
             BindPlayerEvents();
         }
 
-        // Enable controls once all setup is done
-        _playerControls.Enable();
+        _playerControls.Enable(); // Enable after binding
     }
-    
+
+    private void Update()
+    {
+        // Poll button states every frame – cheapest way to expose booleans
+        jumpPressedThisFrame = _playerControls.Movement.Jump.WasPerformedThisFrame();
+        jumpHeldDownInput    = _playerControls.Movement.Jump.IsPressed();
+    }
+
     private void OnDestroy()
     {
+        // Only disable controls if *we* are the active singleton
         if (Instance == this)
         {
             _playerControls?.Disable();
@@ -76,100 +76,51 @@ public class InputManager : MonoBehaviour
         StopAllCoroutines();
     }
 
-    #endregion
-    
-    #region Binding
-    
+    /* ====================================================================== */
+    /*                         Binding & Callbacks                            */
+    /* ====================================================================== */
+
     /// <summary>
-    /// Binds all of the Players' controls to their respective events.
+    /// Subscribes C# methods to each InputAction. This keeps logic decoupled
+    /// from the auto-generated <c>PlayerControls</c> class.
     /// </summary>
     private void BindPlayerEvents()
     {
-        // Subscribe to input events
-        
-        // Movement
-        _playerControls.Movement.Move.performed += i => HandleMovementInput(i);
-        _playerControls.Movement.Jump.performed += i => HandleJump(i);
-        
-        // Gravity Gun
-        _playerControls.GravityGun.LeftClickPush.performed += i => HandleLeftClickPush(i);
-        _playerControls.GravityGun.RightClickPull.performed += i => HandleRightClickPull(i);
-        _playerControls.GravityGun.MiddleWheelPress.performed += i => HandleMiddleWheelPress(i);
-        _playerControls.GravityGun.ScrollWheelDown.performed += i => HandleScrollWheelDown(i);
-        _playerControls.GravityGun.ScrollWheelUp.performed += i => HandleScrollWheelUp(i);
-        
-        // Level
-        _playerControls.Level.Retry.performed += i => HandleLevelRetry(i);
+        /* -------- Movement Axis -------- */
+        _playerControls.Movement.Move.performed += HandleMovementInput;
+        _playerControls.Movement.Move.canceled  += HandleMovementInput;
 
-        // UI
-        _playerControls.UI.Pause.performed += i => HandlePause(i);
+        /* -------- Gravity Gun Actions -------- */
+        _playerControls.GravityGun.LeftClickPush.performed   += HandleLeftClickPush;
+        _playerControls.GravityGun.RightClickPull.performed  += HandleRightClickPull;
+        _playerControls.GravityGun.MiddleWheelPress.performed+= HandleMiddleWheelPress;
+        _playerControls.GravityGun.ScrollWheelDown.performed += HandleScrollWheelDown;
+        _playerControls.GravityGun.ScrollWheelUp.performed   += HandleScrollWheelUp;
+
+        /* -------- Level / UI Actions -------- */
+        _playerControls.Level.Retry.performed += HandleLevelRetry;
+        _playerControls.UI.Pause.performed    += HandlePause;
     }
-    
-    #endregion
-    
-    #region Movement Event Handlers
-    
+
+    /* ---------------- Movement ---------------- */
+
     private void HandleMovementInput(InputAction.CallbackContext context)
     {
-        // Read value from input and set the movementInput Vector to it
         movementInput = context.ReadValue<Vector2>();
-        if (_doDebugLog) Debug.Log("The Movement Input read was = " + movementInput);
+
+        if (_doDebugLog) Debug.Log($"Movement Input = {movementInput}");
+        OnMove?.Invoke();
     }
 
-    private void HandleJump(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            OnJump?.Invoke();
-        }
-    }
-    
-    #endregion
+    /* --------------- Gravity Gun -------------- */
+    // NOTE: Gameplay not implemented yet; methods are placeholders
+    private void HandleLeftClickPush   (InputAction.CallbackContext ctx) { /* TODO */ }
+    private void HandleRightClickPull  (InputAction.CallbackContext ctx) { /* TODO */ }
+    private void HandleMiddleWheelPress(InputAction.CallbackContext ctx) { /* TODO */ }
+    private void HandleScrollWheelUp   (InputAction.CallbackContext ctx) { /* TODO */ }
+    private void HandleScrollWheelDown (InputAction.CallbackContext ctx) { /* TODO */ }
 
-    #region Gravity Gun Event Handlers
-    
-    private void HandleLeftClickPush(InputAction.CallbackContext context)
-    {
-        
-    }
-    
-    private void HandleRightClickPull(InputAction.CallbackContext context)
-    {
-        
-    }
-    
-    private void HandleMiddleWheelPress(InputAction.CallbackContext context)
-    {
-        
-    }
-    
-    private void HandleScrollWheelUp(InputAction.CallbackContext context)
-    {
-        
-    }
-    
-    private void HandleScrollWheelDown(InputAction.CallbackContext context)
-    {
-        
-    }
-    
-    #endregion
-    
-    #region Level Event Handlers
-
-    private void HandleLevelRetry(InputAction.CallbackContext context)
-    {
-        
-    }
-    
-    #endregion
-    
-    #region UI Event Handlers
-
-    private void HandlePause(InputAction.CallbackContext context)
-    {
-        
-    }
-    
-    #endregion
+    /* ---------------- Level / UI -------------- */
+    private void HandleLevelRetry(InputAction.CallbackContext ctx) { /* TODO */ }
+    private void HandlePause     (InputAction.CallbackContext ctx) { /* TODO */ }
 }
