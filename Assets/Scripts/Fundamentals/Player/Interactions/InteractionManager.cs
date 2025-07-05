@@ -17,7 +17,7 @@ public class InteractionManager2D : MonoBehaviour
 
     [Header("Debugging")]
     [SerializeField] private bool doDebugLog = false;
-    [SerializeField] private Interactable _focused;
+    [SerializeField, InspectorReadOnly] private Interactable _focused;
 
     /* ────────── Internals ────────── */
     
