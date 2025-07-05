@@ -55,8 +55,8 @@ public class Lever : Interactable
         }
         
         // Subscribe to events
-        OnFocusEnter += _outline.EnableOutline;
-        OnFocusExit += _outline.DisableOutline;
+        OnFocusEnter += () => _outline.SetOutline(true);
+        OnFocusExit += () => _outline.SetOutline(false);
         // Handle Interaction
         OnInteractionExecuted += () =>
         {

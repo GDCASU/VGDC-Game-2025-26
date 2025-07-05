@@ -27,10 +27,7 @@ public class Outline2D : MonoBehaviour
     [SerializeField] private Material _outlineMaterial;
     
     [Header("Settings")]
-    [SerializeField, Range(-10f,0)] private float _offsetLeft = -1f;
-    [SerializeField, Range(0,10f)] private float _offsetRight = 1f;
-    [SerializeField, Range(0,10f)] private float _offsetUp = 1f;
-    [SerializeField, Range(-10,0)] private float _offsetDown = -1f;
+    [SerializeField, Range(0f,50f)] private float _OutlineSizePx = 5f;
     [SerializeField] private Color _outlineColor = Color.green;
     
     [Header("Buttons")]
@@ -43,18 +40,18 @@ public class Outline2D : MonoBehaviour
     [SerializeField] private bool _doDebugLog;
     
     // Local variables
-    private static readonly int offsetLeftID = Shader.PropertyToID("_Offset_Left");
-    private static readonly int offsetRightID = Shader.PropertyToID("_Offset_Right");
-    private static readonly int offsetUpID = Shader.PropertyToID("_Offset_Up");
-    private static readonly int offsetDownID = Shader.PropertyToID("_Offset_Down");
+    private Material _localOutlineMat;
+    
+    // Hashes
+    private static readonly int _OutlineSizePxID = Shader.PropertyToID("_OutlineSizePx");
     private static readonly int outlineColorID = Shader.PropertyToID("_Outline_Color");
     private static readonly int OutlineOnID = Shader.PropertyToID("_Outline_On");
     
-    void Awake()
+    void Start()
     {
         // Replace sprite renderer material with outline shader
         _spriteRenderer.material = _outlineMaterial;
-        
+        _localOutlineMat = _spriteRenderer.material;
         ApplySettings();
     }
 
@@ -69,33 +66,35 @@ public class Outline2D : MonoBehaviour
 
         if (_enableOutline)
         {
-            EnableOutline();
+            SetOutline(true);
             _enableOutline = false;
         }
 
         if (_disableOutline)
         {
-            DisableOutline();
+            SetOutline(false);
             _disableOutline = false;
         }
     }
 
     private void ApplySettings()
     {
-        _spriteRenderer.material.SetFloat(offsetLeftID, _offsetLeft);
-        _spriteRenderer.material.SetFloat(offsetRightID, _offsetRight);
-        _spriteRenderer.material.SetFloat(offsetUpID, _offsetUp);
-        _spriteRenderer.material.SetFloat(offsetDownID, _offsetDown);
-        _spriteRenderer.material.SetColor(outlineColorID, _outlineColor);
+        _localOutlineMat.SetFloat(_OutlineSizePxID, _OutlineSizePx);
+        _localOutlineMat.SetColor(outlineColorID, _outlineColor);
     }
 
-    public void EnableOutline()
+   public void SetOutline(bool show)
     {
-        _spriteRenderer.material.SetInt(OutlineOnID, 1);
+        _localOutlineMat.SetInt(OutlineOnID, System.Convert.ToInt32(show));
     }
 
-    public void DisableOutline()
+    public void ChangeColor(Color color)
     {
-        _spriteRenderer.material.SetInt(OutlineOnID, 0);
+        _localOutlineMat.SetColor(outlineColorID, color);
+    }
+
+    public void SetDefaultOutlineColor()
+    {
+        _localOutlineMat.SetColor(outlineColorID, _outlineColor);
     }
 }
